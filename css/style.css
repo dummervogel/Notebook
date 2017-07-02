@@ -1,7 +1,8 @@
 .code {
-	background-color: grey;
+	background-color: lightgrey;
 	font-family: Verdana;
-	font-size: 0.75em;
+	font-size: 0.8em;
+	width: 500px;
 }
 .important {
 	text-transform: uppercase;
