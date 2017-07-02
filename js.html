@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" href="css/style.css"/>
+	<title>About javascript</title>
+</head>
+<body>
+	<section>
+		<header>About "this":</header>
+		<p>check this: <a href="http://www.digital-web.com/articles/scope_in_javascript/" target="_blank">Scope in javascript</a></p>
+		<p class="important">Digest:</p>
+		<ul>
+		<li>Calling an object's method: like C++, java:
+		<div class="code">
+			&lt;script type=&quot;text/javascript&quot;&gt;&nbsp;<br />
+		&nbsp;&nbsp;var deep_thought = {&nbsp;<br />
+		&nbsp;&nbsp; the_answer: 42,&nbsp;<br />
+		&nbsp;&nbsp; ask_question: function () {&nbsp;<br />
+		&nbsp;&nbsp; &nbsp;return this.the_answer;&nbsp;<br />
+		&nbsp;&nbsp; }&nbsp;<br />
+		&nbsp;&nbsp;};&nbsp;<br />
+		&nbsp;&nbsp;var the_meaning = deep_thought.ask_question();&nbsp;<br />
+		&lt;/script&gt;
+		</div> 
+		</li>
+		<li>Function constructor:
+		<div class="code">
+		&lt;script type=&quot;text/javascript&quot;&gt;&nbsp;<br />
+		&nbsp;&nbsp;function BigComputer(answer) {&nbsp;<br />
+		&nbsp;&nbsp; this.the_answer = answer;&nbsp;<br />
+		&nbsp;&nbsp; this.ask_question = function () {&nbsp;<br />
+		&nbsp;&nbsp; &nbsp;return this.the_answer;&nbsp;<br />
+		&nbsp;&nbsp; }&nbsp;<br />
+		&nbsp;&nbsp;} &nbsp;&nbsp;<br />
+		&nbsp;&nbsp;var deep_thought = new BigComputer(42);&nbsp;<br />
+		&nbsp;&nbsp;var the_meaning = deep_thought.ask_question();&nbsp;<br />
+		&lt;/script&gt;
+		</div>
+		</li>
+		<li>
+		Normal function call:
+		<div class="code">
+		&lt;script type=&quot;text/javascript&quot;&gt;&nbsp;<br />
+		&nbsp;&nbsp;function test_this() {&nbsp;<br />
+		&nbsp;&nbsp; return this;&nbsp;<br />
+		&nbsp;&nbsp;}<br />
+		&nbsp;&nbsp;var i_wonder_what_this_is = test_this();//this points to window<br />
+		&lt;/script&gt;
+		</div>
+		</li>
+		<li>Note the following case:
+		<div class="code">
+			&lt;script type=&quot;text/javascript&quot;&gt;&nbsp;<br />
+			&nbsp;function BigComputer(answer) {&nbsp;<br />
+			&nbsp;&nbsp;this.the_answer = answer;&nbsp;<br />
+			&nbsp;&nbsp;this.ask_question = function () {&nbsp;<br />
+			&nbsp;&nbsp; alert(this.the_answer);&nbsp;<br />
+			&nbsp;&nbsp;}&nbsp;<br />
+			&nbsp;}&nbsp;<br />
+			&nbsp;&nbsp;<br />
+			&nbsp;function addhandler() {&nbsp;<br />
+			&nbsp;&nbsp;var deep_thought = new BigComputer(42),&nbsp;<br />
+			&nbsp;&nbsp; the_button = document.getElementById(&#039;thebutton&#039;);&nbsp;<br />
+			&nbsp;&nbsp;<br />
+			&nbsp;&nbsp;the_button.onclick = deep_thought.ask_question; //will display undefined. &quot;this&quot; points to the_button<br />
+			&nbsp;}&nbsp;<br />
+			&nbsp;&nbsp;<br />
+			&nbsp;window.onload = addhandler;<br />
+			&lt;/script&gt;
+		</div>
+		</li>
+		</ul>
+	</section>
+	<footer>
+		<p>Format the code using: <a href="https://defuse.ca/html-sanitize.htm" target="_blank">Defuse</a></p>
+	</footer>
+</body>
+</html>
